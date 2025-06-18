@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tourism Helpline | Balkans Tourism</title>
+    <meta name="description" content="Get in touch with our tourism experts for personalized travel assistance, recommendations, and support for your Kosovo and Albania adventure.">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, hsl(var(--background-primary)), hsl(var(--background-secondary)));
+            padding: var(--spacing-3xl) 0;
+            margin-top: 80px;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .contact-form-section {
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+        }
+        
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        .form-label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: hsl(var(--text-secondary));
+        }
+        
+        .form-label.required::after {
+            content: '*';
+            color: hsl(var(--error));
+            margin-left: var(--spacing-xs);
+        }
+        
+        .form-input {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            color: hsl(var(--text-primary));
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: hsl(var(--primary-blue));
+            box-shadow: 0 0 0 3px hsla(var(--primary-blue), 0.1);
+        }
+        
+        .form-input.error {
+            border-color: hsl(var(--error));
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            color: hsl(var(--text-primary));
+            font-size: var(--font-size-base);
+            cursor: pointer;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .error-message {
+            color: hsl(var(--error));
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-xs);
+        }
+        
+        .success-message {
+            color: hsl(var(--success));
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-xs);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            color: white;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .contact-card {
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: var(--transition-normal);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--font-size-lg);
+        }
+        
+        .contact-card-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: hsl(var(--text-primary));
+            margin: 0;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: hsl(var(--text-secondary));
+        }
+        
+        .contact-detail i {
+            color: hsl(var(--primary-blue));
+            width: 20px;
+        }
+        
+        .contact-detail a {
+            color: hsl(var(--text-secondary));
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .contact-detail a:hover {
+            color: hsl(var(--primary-blue));
+        }
+        
+        .office-hours {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .office-hours h4 {
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-base);
+        }
+        
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            color: hsl(var(--text-secondary));
+            font-size: var(--font-size-sm);
+        }
+        
+        .faq-section {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-primary));
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .faq-item {
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+        
+        .faq-question {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+        
+        .faq-question i {
+            color: hsl(var(--primary-blue));
+            margin-top: 2px;
+        }
+        
+        .faq-answer {
+            color: hsl(var(--text-secondary));
+            line-height: 1.7;
+        }
+        
+        .map-section {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-secondary));
+        }
+        
+        .map-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, hsl(var(--primary-blue)), hsl(var(--primary-red)));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--font-size-2xl);
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            border-top-color: currentColor;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-2xl);
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="../assets/logo.svg" alt="Balkans Tourism" class="logo">
+                    <span class="brand-text">Balkans Tourism</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="destinations.html" class="nav-link">Destinations</a>
+                    <a href="history.html" class="nav-link">History</a>
+                    <a href="culture.html" class="nav-link">Culture</a>
+                    <a href="accommodations.html" class="nav-link">Stay</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                    <a href="emergency.html" class="nav-link emergency">Emergency</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Get in Touch</h1>
+                <p class="section-description">Our tourism experts are here to help you plan your perfect Balkan adventure. Contact us for personalized recommendations and assistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container">
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <h2 style="color: hsl(var(--text-primary)); margin-bottom: var(--spacing-lg);">Send us a Message</h2>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label required">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label required">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country" class="form-label">Your Country</label>
+                            <input type="text" id="country" name="country" class="form-input" placeholder="Where are you from?">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inquiryType" class="form-label">Inquiry Type</label>
+                            <select id="inquiryType" name="inquiry_type" class="form-select">
+                                <option value="general">General Information</option>
+                                <option value="destinations">Destinations & Attractions</option>
+                                <option value="accommodations">Accommodations</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="cultural">Cultural Experiences</option>
+                                <option value="emergency">Emergency Assistance</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelDates" class="form-label">Travel Dates</label>
+                            <input type="text" id="travelDates" name="travel_dates" class="form-input" placeholder="When are you planning to visit?">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label required">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required placeholder="Brief summary of your inquiry">
+                        <div class="error-message" id="subjectError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label required">Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" required placeholder="Please provide details about your inquiry, travel plans, or questions..."></textarea>
+                        <div class="error-message" id="messageError"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <div class="loading-spinner" style="display: none;"></div>
+                    </button>
+                    
+                    <div id="formMessage" style="margin-top: var(--spacing-md);"></div>
+                </form>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="contact-info-section">
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="contact-card-title">24/7 Tourism Helpline</h3>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+38344123456">+383 44 123 456</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+35567890123">+355 67 890 123</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:help@balkanstourism.com">help@balkanstourism.com</a>
+                        </div>
+                    </div>
+                    <p style="color: hsl(var(--text-secondary)); margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
+                        Available 24/7 for emergency assistance and urgent travel support.
+                    </p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="contact-card-title">Main Office</h3>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mother Teresa Boulevard 42<br>Pristina 10000, Kosovo</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+38338123456">+383 38 123 456</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@balkanstourism.com">info@balkanstourism.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="office-hours">
+                        <h4>Office Hours</h4>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span>Monday - Friday</span>
+                                <span>8:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Saturday</span>
+                                <span>9:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Sunday</span>
+                                <span>10:00 AM - 2:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <h3 class="contact-card-title">Albania Office</h3>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Bulevardi Dëshmorët e Kombit<br>Tirana 1001, Albania</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+35542123456">+355 4 212 3456</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:albania@balkanstourism.com">albania@balkanstourism.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="contact-card-title">Online Support</h3>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/38344123456">WhatsApp Support</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fab fa-telegram"></i>
+                            <a href="#">Telegram Chat</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-comments"></i>
+                            <a href="#">Live Chat</a>
+                        </div>
+                    </div>
+                    <p style="color: hsl(var(--text-secondary)); margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
+                        Get instant responses through our online support channels.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">Quick answers to common travel questions</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        What is the best time to visit Kosovo and Albania?
+                    </h3>
+                    <p class="faq-answer">
+                        The best time to visit is during spring (April-June) and autumn (September-October) when the weather is pleasant and crowds are smaller. Summer is ideal for coastal areas in Albania, while winter offers skiing opportunities in the mountains.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Do I need a visa to visit Kosovo and Albania?
+                    </h3>
+                    <p class="faq-answer">
+                        EU citizens, US, UK, Canada, and many other countries can enter visa-free for up to 90 days. Please check current visa requirements based on your nationality before traveling.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        What currencies are used?
+                    </h3>
+                    <p class="faq-answer">
+                        Kosovo uses the Euro (EUR), while Albania uses the Albanian Lek (ALL). Euros are widely accepted in Albania, especially in tourist areas. Credit cards are accepted in major establishments.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Is it safe to travel in Kosovo and Albania?
+                    </h3>
+                    <p class="faq-answer">
+                        Both countries are generally very safe for tourists. Crime rates are low, and locals are known for their hospitality. Standard travel precautions apply, especially in crowded areas.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        What languages are spoken?
+                    </h3>
+                    <p class="faq-answer">
+                        Albanian is the main language in both countries, with Serbian also official in Kosovo. English is increasingly spoken in tourist areas, and German and Italian are common due to diaspora connections.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        How do I get around between countries?
+                    </h3>
+                    <p class="faq-answer">
+                        Regular bus services connect major cities. Car rental is available, and the road network is generally good. Flights connect to major European cities. Border crossings are straightforward with proper documentation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Us</h2>
+                <p class="section-description">Visit our offices for in-person assistance</p>
+            </div>
+            
+            <div class="map-placeholder">
+                <div style="text-align: center;">
+                    <i class="fas fa-map-marked-alt" style="font-size: var(--font-size-5xl); margin-bottom: var(--spacing-md);"></i>
+                    <p>Interactive Map</p>
+                    <p style="font-size: var(--font-size-base);">Showing our office locations in Pristina and Tirana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="../assets/logo.svg" alt="Balkans Tourism" class="footer-logo">
+                        <h3>Balkans Tourism</h3>
+                    </div>
+                    <p>Your trusted partner for exploring the authentic beauty of Kosovo and Albania.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="accommodations.html">Hotels</a></li>
+                        <li><a href="culture.html">Culture</a></li>
+                        <li><a href="history.html">History</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="#">Travel Tips</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@balkanstourism.com</p>
+                        <p><i class="fas fa-phone"></i> +383 44 123 456</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pristina, Kosovo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Balkans Tourism Helpline. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Page-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeContactPage();
+        });
+
+        function initializeContactPage() {
+            setupNavigation();
+            setupContactForm();
+        }
+
+        function setupContactForm() {
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    await submitForm();
+                }
+            });
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', () => validateField(input));
+                input.addEventListener('input', () => clearFieldError(input));
+            });
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Validate required fields
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            
+            if (!name.value.trim()) {
+                showFieldError('name', 'Full name is required');
+                isValid = false;
+            } else if (name.value.trim().length < 2) {
+                showFieldError('name', 'Name must be at least 2 characters long');
+                isValid = false;
+            }
+            
+            if (!email.value.trim()) {
+                showFieldError('email', 'Email address is required');
+                isValid = false;
+            } else if (!isValidEmail(email.value)) {
+                showFieldError('email', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (!subject.value.trim()) {
+                showFieldError('subject', 'Subject is required');
+                isValid = false;
+            } else if (subject.value.trim().length < 5) {
+                showFieldError('subject', 'Subject must be at least 5 characters long');
+                isValid = false;
+            }
+            
+            if (!message.value.trim()) {
+                showFieldError('message', 'Message is required');
+                isValid = false;
+            } else if (message.value.trim().length < 10) {
+                showFieldError('message', 'Message must be at least 10 characters long');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldName = field.name;
+            
+            switch (fieldName) {
+                case 'name':
+                    if (!value) {
+                        showFieldError('name', 'Full name is required');
+                    } else if (value.length < 2) {
+                        showFieldError('name', 'Name must be at least 2 characters long');
+                    }
+                    break;
+                    
+                case 'email':
+                    if (!value) {
+                        showFieldError('email', 'Email address is required');
+                    } else if (!isValidEmail(value)) {
+                        showFieldError('email', 'Please enter a valid email address');
+                    }
+                    break;
+                    
+                case 'subject':
+                    if (!value) {
+                        showFieldError('subject', 'Subject is required');
+                    } else if (value.length < 5) {
+                        showFieldError('subject', 'Subject must be at least 5 characters long');
+                    }
+                    break;
+                    
+                case 'message':
+                    if (!value) {
+                        showFieldError('message', 'Message is required');
+                    } else if (value.length < 10) {
+                        showFieldError('message', 'Message must be at least 10 characters long');
+                    }
+                    break;
+            }
+        }
+
+        function showFieldError(fieldName, message) {
+            const field = document.getElementById(fieldName);
+            const errorElement = document.getElementById(fieldName + 'Error');
+            
+            field.classList.add('error');
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            const errorElement = document.getElementById(field.name + 'Error');
+            if (errorElement) {
+                errorElement.textContent = '';
+            }
+        }
+
+        function clearAllErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.textContent = '';
+            });
+            
+            const errorFields = document.querySelectorAll('.form-input.error');
+            errorFields.forEach(field => {
+                field.classList.remove('error');
+            });
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        async function submitForm() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            const messageDiv = document.getElementById('formMessage');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Sending...';
+            spinner.style.display = 'inline-block';
+            messageDiv.innerHTML = '';
+            
+            try {
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                const response = await fetch('../api/contact.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showSuccessMessage('Thank you for your message! We will get back to you within 24 hours.');
+                    form.reset();
+                } else {
+                    showErrorMessage(result.message || 'There was an error sending your message. Please try again.');
+                }
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showErrorMessage('There was an error sending your message. Please check your connection and try again.');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.textContent = 'Send Message';
+                spinner.style.display = 'none';
+            }
+        }
+
+        function showSuccessMessage(message) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> ${message}</div>`;
+        }
+
+        function showErrorMessage(message) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-triangle"></i> ${message}</div>`;
+        }
+
+        function setupNavigation() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+                
+                navMenu.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('nav-link')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

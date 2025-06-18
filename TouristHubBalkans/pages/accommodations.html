@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations - Hotels & Lodging | Balkans Tourism</title>
+    <meta name="description" content="Find the perfect place to stay in Kosovo and Albania. From luxury hotels to authentic guesthouses, discover accommodations that suit every budget and preference.">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .accommodations-hero {
+            background: linear-gradient(135deg, hsl(var(--background-primary)), hsl(var(--background-secondary)));
+            padding: var(--spacing-3xl) 0;
+            margin-top: 80px;
+        }
+        
+        .filter-section {
+            background: hsl(var(--background-secondary));
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid hsl(var(--border-light));
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .filter-label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: hsl(var(--text-secondary));
+        }
+        
+        .filter-input {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-md);
+            padding: var(--spacing-sm) var(--spacing-md);
+            color: hsl(var(--text-primary));
+            font-size: var(--font-size-base);
+        }
+        
+        .filter-input:focus {
+            outline: none;
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .filter-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+        }
+        
+        .accommodations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .accommodation-card {
+            background: hsl(var(--background-secondary));
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid hsl(var(--border-light));
+            transition: var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .accommodation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .accommodation-image {
+            height: 220px;
+            background: linear-gradient(135deg, hsl(var(--primary-blue)), hsl(var(--primary-red)));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-3xl);
+            color: white;
+            position: relative;
+        }
+        
+        .accommodation-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            background: hsla(var(--background-primary), 0.9);
+            color: hsl(var(--accent-gold));
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .price-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: hsl(var(--primary-red));
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+        
+        .accommodation-content {
+            padding: var(--spacing-lg);
+        }
+        
+        .accommodation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .accommodation-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: hsl(var(--text-primary));
+            margin: 0;
+        }
+        
+        .accommodation-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+            color: hsl(var(--accent-gold));
+        }
+        
+        .accommodation-location {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: hsl(var(--text-muted));
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .accommodation-type {
+            background: hsl(var(--background-tertiary));
+            color: hsl(var(--text-secondary));
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .accommodation-description {
+            color: hsl(var(--text-secondary));
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .amenities-preview {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .amenity-icon {
+            width: 32px;
+            height: 32px;
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--primary-blue));
+            font-size: var(--font-size-sm);
+        }
+        
+        .accommodation-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .view-details-btn {
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+        
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .check-availability-btn {
+            background: hsl(var(--background-tertiary));
+            color: hsl(var(--text-primary));
+            border: 1px solid hsl(var(--border-light));
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .check-availability-btn:hover {
+            background: hsl(var(--primary-blue));
+            color: white;
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin: var(--spacing-2xl) 0;
+        }
+        
+        .load-more-btn {
+            background: hsl(var(--background-tertiary));
+            color: hsl(var(--text-primary));
+            border: 1px solid hsl(var(--border-light));
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .load-more-btn:hover {
+            background: hsl(var(--background-secondary));
+            transform: translateY(-2px);
+        }
+        
+        .load-more-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .accommodation-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .accommodation-modal-content {
+            background: hsl(var(--background-secondary));
+            margin: 2% auto;
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid hsl(var(--border-light));
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .modal-header {
+            padding: var(--spacing-xl);
+            border-bottom: 1px solid hsl(var(--border-light));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: var(--spacing-xl);
+        }
+        
+        .accommodation-detail-image {
+            height: 300px;
+            background: linear-gradient(135deg, hsl(var(--primary-blue)), hsl(var(--primary-red)));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-5xl);
+            color: white;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .amenities-full-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-md);
+        }
+        
+        .amenity-item i {
+            color: hsl(var(--primary-blue));
+            width: 20px;
+        }
+        
+        .contact-section {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .contact-item i {
+            color: hsl(var(--primary-blue));
+            width: 20px;
+        }
+        
+        .empty-state, .error-state {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: hsl(var(--text-secondary));
+            grid-column: 1 / -1;
+        }
+        
+        .empty-state i, .error-state i {
+            font-size: var(--font-size-5xl);
+            color: hsl(var(--text-muted));
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid hsl(var(--border-light));
+            border-radius: 50%;
+            border-top-color: hsl(var(--primary-blue));
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .accommodations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-actions {
+                justify-content: stretch;
+            }
+            
+            .filter-actions .btn {
+                flex: 1;
+            }
+            
+            .accommodation-actions {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            
+            .accommodation-actions .view-details-btn,
+            .accommodation-actions .check-availability-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="../assets/logo.svg" alt="Balkans Tourism" class="logo">
+                    <span class="brand-text">Balkans Tourism</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="destinations.html" class="nav-link">Destinations</a>
+                    <a href="history.html" class="nav-link">History</a>
+                    <a href="culture.html" class="nav-link">Culture</a>
+                    <a href="accommodations.html" class="nav-link active">Stay</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="emergency.html" class="nav-link emergency">Emergency</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="accommodations-hero">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Find Your Perfect Stay</h1>
+                <p class="section-description">Discover comfortable accommodations across Kosovo and Albania, from luxury hotels to authentic guesthouses</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="countryFilter" class="filter-label">Country</label>
+                    <select id="countryFilter" class="filter-input">
+                        <option value="">All Countries</option>
+                        <option value="Kosovo">Kosovo</option>
+                        <option value="Albania">Albania</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="locationFilter" class="filter-label">Location</label>
+                    <input type="text" id="locationFilter" class="filter-input" placeholder="Enter city or region">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="typeFilter" class="filter-label">Accommodation Type</label>
+                    <select id="typeFilter" class="filter-input">
+                        <option value="">All Types</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="guesthouse">Guesthouse</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="hostel">Hostel</option>
+                        <option value="villa">Villa</option>
+                        <option value="resort">Resort</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="priceRangeFilter" class="filter-label">Price Range</label>
+                    <select id="priceRangeFilter" class="filter-input">
+                        <option value="">All Prices</option>
+                        <option value="budget">Budget (€20-50)</option>
+                        <option value="mid-range">Mid-range (€50-100)</option>
+                        <option value="luxury">Luxury (€100-200)</option>
+                        <option value="premium">Premium (€200+)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="ratingFilter" class="filter-label">Minimum Rating</label>
+                    <select id="ratingFilter" class="filter-input">
+                        <option value="">Any Rating</option>
+                        <option value="3">3+ Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="4.5">4.5+ Stars</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="searchFilter" class="filter-label">Search</label>
+                    <input type="text" id="searchFilter" class="filter-input" placeholder="Search accommodations...">
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button class="btn btn-secondary" onclick="clearFilters()">
+                    <i class="fas fa-times"></i>
+                    Clear Filters
+                </button>
+                <button class="btn btn-primary" onclick="applyFilters()">
+                    <i class="fas fa-search"></i>
+                    Search Accommodations
+                </button>
+            </div>
+        </div>
+
+        <!-- Accommodations Grid -->
+        <div class="accommodations-grid" id="accommodationsGrid">
+            <!-- Accommodations will be loaded here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreAccommodations()">
+                <span class="btn-text">Load More Accommodations</span>
+                <div class="loading-spinner" style="display: none;"></div>
+            </button>
+        </div>
+    </main>
+
+    <!-- Accommodation Detail Modal -->
+    <div class="accommodation-modal" id="accommodationModal">
+        <div class="accommodation-modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Accommodation Details</h3>
+                <span class="close" onclick="closeAccommodationModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="../assets/logo.svg" alt="Balkans Tourism" class="footer-logo">
+                        <h3>Balkans Tourism</h3>
+                    </div>
+                    <p>Your trusted partner for exploring the authentic beauty of Kosovo and Albania.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="accommodations.html">Hotels</a></li>
+                        <li><a href="culture.html">Culture</a></li>
+                        <li><a href="history.html">History</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="#">Travel Tips</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@balkanstourism.com</p>
+                        <p><i class="fas fa-phone"></i> +383 44 123 456</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pristina, Kosovo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Balkans Tourism Helpline. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Page-specific JavaScript
+        let currentAccommodations = [];
+        let currentOffset = 0;
+        let hasMoreAccommodations = true;
+        let isLoading = false;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAccommodationsPage();
+        });
+
+        function initializeAccommodationsPage() {
+            setupNavigation();
+            loadAccommodations();
+            
+            // Setup search input with debounce
+            const searchInput = document.getElementById('searchFilter');
+            if (searchInput) {
+                let searchTimeout;
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(applyFilters, 500);
+                });
+            }
+        }
+
+        async function loadAccommodations(reset = true) {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const btnText = loadMoreBtn.querySelector('.btn-text');
+            const spinner = loadMoreBtn.querySelector('.loading-spinner');
+            
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline-block';
+            loadMoreBtn.disabled = true;
+
+            if (reset) {
+                currentOffset = 0;
+                currentAccommodations = [];
+            }
+
+            try {
+                const params = new URLSearchParams({
+                    limit: 12,
+                    offset: currentOffset
+                });
+
+                // Add filters
+                const country = document.getElementById('countryFilter').value;
+                const location = document.getElementById('locationFilter').value;
+                const type = document.getElementById('typeFilter').value;
+                const priceRange = document.getElementById('priceRangeFilter').value;
+                const minRating = document.getElementById('ratingFilter').value;
+                const search = document.getElementById('searchFilter').value;
+
+                if (country) params.append('country', country);
+                if (location) params.append('location', location);
+                if (type) params.append('type', type);
+                if (priceRange) params.append('price_range', priceRange);
+                if (minRating) params.append('min_rating', minRating);
+                if (search) params.append('search', search);
+
+                const response = await fetch(`../api/accommodations.php?${params}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success && data.accommodations) {
+                    if (reset) {
+                        currentAccommodations = data.accommodations;
+                    } else {
+                        currentAccommodations = [...currentAccommodations, ...data.accommodations];
+                    }
+                    
+                    hasMoreAccommodations = data.has_more;
+                    currentOffset += data.accommodations.length;
+                    
+                    displayAccommodations(currentAccommodations, reset);
+                } else {
+                    displayEmptyState();
+                }
+                
+            } catch (error) {
+                console.error('Error loading accommodations:', error);
+                displayErrorState();
+            } finally {
+                isLoading = false;
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+                loadMoreBtn.disabled = !hasMoreAccommodations;
+                
+                if (!hasMoreAccommodations) {
+                    loadMoreBtn.textContent = 'No More Accommodations';
+                } else {
+                    loadMoreBtn.querySelector('.btn-text').textContent = 'Load More Accommodations';
+                }
+            }
+        }
+
+        function displayAccommodations(accommodations, reset = true) {
+            const grid = document.getElementById('accommodationsGrid');
+            
+            if (reset) {
+                grid.innerHTML = '';
+            }
+
+            if (accommodations.length === 0 && reset) {
+                displayEmptyState();
+                return;
+            }
+
+            accommodations.forEach(accommodation => {
+                const accommodationCard = createAccommodationCard(accommodation);
+                grid.appendChild(accommodationCard);
+            });
+        }
+
+        function createAccommodationCard(accommodation) {
+            const card = document.createElement('div');
+            card.className = 'accommodation-card';
+            card.onclick = () => openAccommodationModal(accommodation.id);
+
+            const typeIcon = getAccommodationIcon(accommodation.type);
+            const amenitiesPreview = (accommodation.amenities || []).slice(0, 4);
+            
+            card.innerHTML = `
+                <div class="accommodation-image">
+                    <i class="${typeIcon}"></i>
+                    ${accommodation.featured ? '<div class="accommodation-badge">Featured</div>' : ''}
+                    <div class="price-badge">${getPriceDisplay(accommodation.price_range)}</div>
+                </div>
+                <div class="accommodation-content">
+                    <div class="accommodation-header">
+                        <h3 class="accommodation-title">${escapeHtml(accommodation.name)}</h3>
+                        ${accommodation.rating ? `
+                            <div class="accommodation-rating">
+                                <i class="fas fa-star"></i>
+                                <span>${accommodation.rating}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="accommodation-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${escapeHtml(accommodation.location)}, ${escapeHtml(accommodation.country)}</span>
+                    </div>
+                    
+                    <div class="accommodation-type">${capitalizeFirst(accommodation.type)}</div>
+                    
+                    <p class="accommodation-description">${escapeHtml(truncateText(accommodation.description, 120))}</p>
+                    
+                    <div class="amenities-preview">
+                        ${amenitiesPreview.map(amenity => `
+                            <div class="amenity-icon" title="${escapeHtml(amenity)}">
+                                <i class="${getAmenityIcon(amenity)}"></i>
+                            </div>
+                        `).join('')}
+                        ${accommodation.amenities && accommodation.amenities.length > 4 ? `
+                            <div class="amenity-icon" title="+${accommodation.amenities.length - 4} more">
+                                <span style="font-size: 10px;">+${accommodation.amenities.length - 4}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="accommodation-actions">
+                        <a href="#" class="view-details-btn" onclick="event.stopPropagation(); openAccommodationModal(${accommodation.id})">
+                            View Details
+                        </a>
+                        <button class="check-availability-btn" onclick="event.stopPropagation(); checkAvailability(${accommodation.id})">
+                            <i class="fas fa-calendar-check"></i>
+                            Check Availability
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        async function openAccommodationModal(accommodationId) {
+            const modal = document.getElementById('accommodationModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            modalTitle.textContent = 'Loading...';
+            modalBody.innerHTML = '<div class="text-center"><div class="loading-spinner"></div><p>Loading accommodation details...</p></div>';
+
+            try {
+                const response = await fetch(`../api/accommodations.php?action=detail&id=${accommodationId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success && data.accommodation) {
+                    displayAccommodationDetails(data.accommodation, data.reviews, data.nearby_accommodations);
+                } else {
+                    modalBody.innerHTML = '<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>Could not load accommodation details.</p></div>';
+                }
+                
+            } catch (error) {
+                console.error('Error loading accommodation details:', error);
+                modalBody.innerHTML = '<div class="error-state"><i class="fas fa-exclamation-triangle"></i><p>Error loading accommodation details. Please try again.</p></div>';
+            }
+        }
+
+        function displayAccommodationDetails(accommodation, reviews, nearby) {
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalTitle.textContent = accommodation.name;
+            
+            const typeIcon = getAccommodationIcon(accommodation.type);
+            
+            modalBody.innerHTML = `
+                <div class="accommodation-detail-image">
+                    <i class="${typeIcon}"></i>
+                </div>
+                
+                <div class="accommodation-detail-content">
+                    <div class="accommodation-header">
+                        <div>
+                            <h2>${escapeHtml(accommodation.name)}</h2>
+                            <div class="accommodation-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${escapeHtml(accommodation.location)}, ${escapeHtml(accommodation.country)}</span>
+                            </div>
+                            <div class="accommodation-type">${capitalizeFirst(accommodation.type)}</div>
+                        </div>
+                        ${accommodation.rating ? `
+                            <div class="accommodation-rating">
+                                <i class="fas fa-star"></i>
+                                <span>${accommodation.rating}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div style="margin: var(--spacing-lg) 0;">
+                        <h3>Description</h3>
+                        <p style="line-height: 1.7; color: hsl(var(--text-secondary));">${escapeHtml(accommodation.description)}</p>
+                    </div>
+                    
+                    ${accommodation.amenities && accommodation.amenities.length > 0 ? `
+                        <div style="margin-bottom: var(--spacing-lg);">
+                            <h3>Amenities & Services</h3>
+                            <div class="amenities-full-list">
+                                ${accommodation.amenities.map(amenity => `
+                                    <div class="amenity-item">
+                                        <i class="${getAmenityIcon(amenity)}"></i>
+                                        <span>${escapeHtml(amenity)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${accommodation.contact_info ? `
+                        <div class="contact-section">
+                            <h3>Contact Information</h3>
+                            <div class="contact-grid">
+                                ${accommodation.contact_info.phone ? `
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span>${escapeHtml(accommodation.contact_info.phone)}</span>
+                                    </div>
+                                ` : ''}
+                                ${accommodation.contact_info.email ? `
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>${escapeHtml(accommodation.contact_info.email)}</span>
+                                    </div>
+                                ` : ''}
+                                ${accommodation.contact_info.website ? `
+                                    <div class="contact-item">
+                                        <i class="fas fa-globe"></i>
+                                        <a href="${escapeHtml(accommodation.contact_info.website)}" target="_blank" style="color: hsl(var(--primary-blue));">${escapeHtml(accommodation.contact_info.website)}</a>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${reviews && reviews.length > 0 ? `
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h3>Recent Reviews</h3>
+                            ${reviews.slice(0, 3).map(review => `
+                                <div style="background: hsl(var(--background-primary)); padding: var(--spacing-md); border-radius: var(--radius-lg); margin-bottom: var(--spacing-sm); border: 1px solid hsl(var(--border-light));">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                                        <strong style="color: hsl(var(--text-primary));">${escapeHtml(review.guest_name)}</strong>
+                                        <div class="accommodation-rating">
+                                            <i class="fas fa-star"></i>
+                                            <span>${review.rating}</span>
+                                        </div>
+                                    </div>
+                                    <p style="color: hsl(var(--text-secondary));">${escapeHtml(review.comment)}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${nearby && nearby.length > 0 ? `
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h3>Nearby Accommodations</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md);">
+                                ${nearby.map(acc => `
+                                    <div style="background: hsl(var(--background-primary)); padding: var(--spacing-md); border-radius: var(--radius-lg); border: 1px solid hsl(var(--border-light)); cursor: pointer;" onclick="openAccommodationModal(${acc.id})">
+                                        <h4 style="margin: 0 0 var(--spacing-xs) 0; color: hsl(var(--text-primary));">${escapeHtml(acc.name)}</h4>
+                                        <p style="margin: 0; font-size: var(--font-size-sm); color: hsl(var(--text-secondary));">${escapeHtml(acc.location)}</p>
+                                        <div style="font-size: var(--font-size-xs); color: hsl(var(--text-muted)); margin-top: var(--spacing-xs);">${capitalizeFirst(acc.type)}</div>
+                                        ${acc.rating ? `
+                                            <div class="accommodation-rating" style="margin-top: var(--spacing-xs);">
+                                                <i class="fas fa-star"></i>
+                                                <span>${acc.rating}</span>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function closeAccommodationModal() {
+            const modal = document.getElementById('accommodationModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        async function checkAvailability(accommodationId) {
+            // In a real implementation, this would open a date picker modal
+            // For now, we'll show a simple alert
+            alert('Availability checking functionality will be implemented with a booking system. Please contact the accommodation directly for availability.');
+        }
+
+        function applyFilters() {
+            loadAccommodations(true);
+        }
+
+        function clearFilters() {
+            document.getElementById('countryFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            document.getElementById('typeFilter').value = '';
+            document.getElementById('priceRangeFilter').value = '';
+            document.getElementById('ratingFilter').value = '';
+            document.getElementById('searchFilter').value = '';
+            loadAccommodations(true);
+        }
+
+        function loadMoreAccommodations() {
+            loadAccommodations(false);
+        }
+
+        function displayEmptyState() {
+            const grid = document.getElementById('accommodationsGrid');
+            grid.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-bed"></i>
+                    <h3>No Accommodations Found</h3>
+                    <p>No accommodations match your search criteria. Try adjusting your filters or search terms.</p>
+                    <button class="btn btn-primary" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            `;
+        }
+
+        function displayErrorState() {
+            const grid = document.getElementById('accommodationsGrid');
+            grid.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Unable to Load Accommodations</h3>
+                    <p>There was an error loading the accommodations. Please check your connection and try again.</p>
+                    <button class="btn btn-secondary" onclick="loadAccommodations(true)">Retry</button>
+                </div>
+            `;
+        }
+
+        function getAccommodationIcon(type) {
+            const icons = {
+                hotel: 'fas fa-building',
+                guesthouse: 'fas fa-home',
+                apartment: 'fas fa-door-open',
+                hostel: 'fas fa-bed',
+                villa: 'fas fa-house-user',
+                resort: 'fas fa-umbrella-beach'
+            };
+            return icons[type] || 'fas fa-bed';
+        }
+
+        function getAmenityIcon(amenity) {
+            const amenityLower = amenity.toLowerCase();
+            const icons = {
+                'wifi': 'fas fa-wifi',
+                'parking': 'fas fa-parking',
+                'pool': 'fas fa-swimmer',
+                'gym': 'fas fa-dumbbell',
+                'restaurant': 'fas fa-utensils',
+                'bar': 'fas fa-cocktail',
+                'spa': 'fas fa-spa',
+                'air conditioning': 'fas fa-snowflake',
+                'room service': 'fas fa-concierge-bell',
+                'laundry': 'fas fa-tshirt',
+                'business center': 'fas fa-briefcase',
+                'pet friendly': 'fas fa-paw',
+                'wheelchair accessible': 'fas fa-wheelchair'
+            };
+            
+            for (const [key, icon] of Object.entries(icons)) {
+                if (amenityLower.includes(key)) {
+                    return icon;
+                }
+            }
+            return 'fas fa-check';
+        }
+
+        function getPriceDisplay(priceRange) {
+            const ranges = {
+                'budget': '€20-50',
+                'mid-range': '€50-100',
+                'luxury': '€100-200',
+                'premium': '€200+'
+            };
+            return ranges[priceRange] || priceRange;
+        }
+
+        function truncateText(text, length) {
+            return text.length > length ? text.substring(0, length) + '...' : text;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, (m) => map[m]);
+        }
+
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('accommodationModal');
+            if (event.target === modal) {
+                closeAccommodationModal();
+            }
+        });
+
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAccommodationModal();
+            }
+        });
+    </script>
+</body>
+</html>
