@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Heritage - Kosovo & Albania | Balkans Tourism</title>
+    <meta name="description" content="Immerse yourself in the rich cultural traditions of Kosovo and Albania. Discover festivals, customs, arts, and traditional practices that define Balkan heritage.">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .culture-hero {
+            background: linear-gradient(135deg, hsl(var(--background-primary)), hsl(var(--background-secondary)));
+            padding: var(--spacing-3xl) 0;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .culture-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, hsla(var(--primary-red), 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsla(var(--accent-gold), 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .culture-categories {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-primary));
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .category-card {
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: var(--transition-normal);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                hsla(var(--primary-blue), 0.1), 
+                transparent);
+            transition: var(--transition-slow);
+        }
+        
+        .category-card:hover::before {
+            left: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-lg);
+            font-size: var(--font-size-2xl);
+            color: white;
+        }
+        
+        .category-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .category-description {
+            color: hsl(var(--text-secondary));
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .category-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            justify-content: center;
+        }
+        
+        .highlight-tag {
+            background: hsl(var(--background-tertiary));
+            color: hsl(var(--text-secondary));
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            border: 1px solid hsl(var(--border-light));
+        }
+        
+        .festivals-section {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-secondary));
+        }
+        
+        .festivals-calendar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .festival-card {
+            background: hsl(var(--background-primary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition-normal);
+        }
+        
+        .festival-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: hsl(var(--primary-blue));
+        }
+        
+        .festival-header {
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            color: white;
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .festival-date {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .festival-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .festival-location {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+        
+        .festival-content {
+            padding: var(--spacing-lg);
+        }
+        
+        .festival-description {
+            color: hsl(var(--text-secondary));
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .festival-activities {
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .festival-activities h4 {
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-base);
+        }
+        
+        .activities-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .activities-list li {
+            color: hsl(var(--text-secondary));
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .activities-list li i {
+            color: hsl(var(--primary-blue));
+            width: 16px;
+        }
+        
+        .traditions-showcase {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-primary));
+        }
+        
+        .traditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .tradition-item {
+            display: flex;
+            gap: var(--spacing-lg);
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: var(--transition-normal);
+        }
+        
+        .tradition-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .tradition-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, hsl(var(--accent-gold)), hsl(var(--primary-red)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--font-size-xl);
+            flex-shrink: 0;
+        }
+        
+        .tradition-content h3 {
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-lg);
+        }
+        
+        .tradition-content p {
+            color: hsl(var(--text-secondary));
+            line-height: 1.7;
+            font-size: var(--font-size-sm);
+        }
+        
+        .cuisine-section {
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-secondary));
+        }
+        
+        .cuisine-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .cuisine-card {
+            background: hsl(var(--background-primary));
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid hsl(var(--border-light));
+            transition: var(--transition-normal);
+        }
+        
+        .cuisine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .cuisine-image {
+            height: 200px;
+            background: linear-gradient(135deg, hsl(var(--accent-gold)), hsl(var(--primary-red)));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-3xl);
+            color: white;
+        }
+        
+        .cuisine-info {
+            padding: var(--spacing-lg);
+        }
+        
+        .cuisine-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: hsl(var(--text-primary));
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .cuisine-origin {
+            color: hsl(var(--text-muted));
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cuisine-description {
+            color: hsl(var(--text-secondary));
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cuisine-ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .ingredient-tag {
+            background: hsl(var(--background-tertiary));
+            color: hsl(var(--text-secondary));
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            border: 1px solid hsl(var(--border-light));
+        }
+        
+        .cultural-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            padding: var(--spacing-3xl) 0;
+            background: hsl(var(--background-primary));
+        }
+        
+        .cultural-stat {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background: hsl(var(--background-secondary));
+            border: 1px solid hsl(var(--border-light));
+            border-radius: var(--radius-xl);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--primary-blue)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            font-size: var(--font-size-xl);
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: hsl(var(--primary-blue));
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            color: hsl(var(--text-secondary));
+            font-size: var(--font-size-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .traditions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tradition-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cultural-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cultural-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid,
+            .festivals-calendar,
+            .cuisine-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="../assets/logo.svg" alt="Balkans Tourism" class="logo">
+                    <span class="brand-text">Balkans Tourism</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="destinations.html" class="nav-link">Destinations</a>
+                    <a href="history.html" class="nav-link">History</a>
+                    <a href="culture.html" class="nav-link active">Culture</a>
+                    <a href="accommodations.html" class="nav-link">Stay</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="emergency.html" class="nav-link emergency">Emergency</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="culture-hero">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Cultural Heritage of Kosovo & Albania</h1>
+                <p class="section-description">Experience the vibrant traditions, festivals, and customs that define the unique identity of the Balkan region</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Statistics -->
+    <section class="cultural-stats">
+        <div class="container">
+            <div class="cultural-stat">
+                <div class="stat-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <span class="stat-number" data-target="25">0</span>
+                <span class="stat-label">Traditional Festivals</span>
+            </div>
+            <div class="cultural-stat">
+                <div class="stat-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <span class="stat-number" data-target="100">0</span>
+                <span class="stat-label">Traditional Dishes</span>
+            </div>
+            <div class="cultural-stat">
+                <div class="stat-icon">
+                    <i class="fas fa-theater-masks"></i>
+                </div>
+                <span class="stat-number" data-target="15">0</span>
+                <span class="stat-label">Folk Traditions</span>
+            </div>
+            <div class="cultural-stat">
+                <div class="stat-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label">Languages</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Categories -->
+    <section class="culture-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cultural Experiences</h2>
+                <p class="section-description">Explore different aspects of Balkan culture</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="category-title">Music & Dance</h3>
+                    <p class="category-description">Traditional folk music, epic ballads, and vibrant dance performances that tell stories of heroism, love, and community celebrations.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Folk Songs</span>
+                        <span class="highlight-tag">Traditional Dances</span>
+                        <span class="highlight-tag">Epic Ballads</span>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="category-title">Arts & Crafts</h3>
+                    <p class="category-description">Intricate woodworking, traditional textiles, metalwork, and pottery that showcase centuries-old techniques passed down through generations.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Woodcarving</span>
+                        <span class="highlight-tag">Textiles</span>
+                        <span class="highlight-tag">Metalwork</span>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="category-title">Culinary Traditions</h3>
+                    <p class="category-description">Rich culinary heritage featuring hearty dishes, traditional cooking methods, and unique flavors influenced by Mediterranean and Ottoman cuisines.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Traditional Recipes</span>
+                        <span class="highlight-tag">Local Ingredients</span>
+                        <span class="highlight-tag">Cooking Methods</span>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="category-title">Family & Community</h3>
+                    <p class="category-description">Strong family bonds, traditional hospitality, and community gatherings that form the foundation of Balkan social structure.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Hospitality</span>
+                        <span class="highlight-tag">Family Values</span>
+                        <span class="highlight-tag">Community Events</span>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="category-title">Traditional Customs</h3>
+                    <p class="category-description">Seasonal celebrations, rites of passage, and ancestral customs that connect communities to their heritage and natural cycles.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Seasonal Festivals</span>
+                        <span class="highlight-tag">Rites of Passage</span>
+                        <span class="highlight-tag">Folk Beliefs</span>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="category-title">Literature & Oral Tradition</h3>
+                    <p class="category-description">Rich storytelling tradition, epic poetry, and folk tales that preserve historical memory and cultural wisdom.</p>
+                    <div class="category-highlights">
+                        <span class="highlight-tag">Epic Poetry</span>
+                        <span class="highlight-tag">Folk Tales</span>
+                        <span class="highlight-tag">Oral History</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional Cuisine -->
+    <section class="cuisine-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Traditional Cuisine</h2>
+                <p class="section-description">Discover the flavors and dishes that define Balkan gastronomy</p>
+            </div>
+            
+            <div class="cuisine-gallery">
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Tavë Kosi</h3>
+                        <p class="cuisine-origin">Traditional Albanian Dish</p>
+                        <p class="cuisine-description">A beloved baked lamb and rice dish with yogurt, considered Albania's national dish. The combination of tender meat, rice, and tangy yogurt creates a comforting meal.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Lamb</span>
+                            <span class="ingredient-tag">Rice</span>
+                            <span class="ingredient-tag">Yogurt</span>
+                            <span class="ingredient-tag">Herbs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Flija</h3>
+                        <p class="cuisine-origin">Traditional Kosovo Specialty</p>
+                        <p class="cuisine-description">A layered pancake dish cooked under a special bell-shaped lid called sač. Each thin layer is brushed with cream and baked to perfection.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Flour</span>
+                            <span class="ingredient-tag">Cream</span>
+                            <span class="ingredient-tag">Eggs</span>
+                            <span class="ingredient-tag">Milk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Koran me Arra</h3>
+                        <p class="cuisine-origin">Coastal Albanian Dish</p>
+                        <p class="cuisine-description">Fresh trout prepared with walnuts and traditional herbs, representing the perfect marriage of mountain streams and nut groves.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Fresh Trout</span>
+                            <span class="ingredient-tag">Walnuts</span>
+                            <span class="ingredient-tag">Garlic</span>
+                            <span class="ingredient-tag">Parsley</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Petulla</h3>
+                        <p class="cuisine-origin">Traditional Fried Bread</p>
+                        <p class="cuisine-description">Crispy fried dough served with honey, cheese, or jam. A beloved treat enjoyed during festivals and family gatherings.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Flour</span>
+                            <span class="ingredient-tag">Yeast</span>
+                            <span class="ingredient-tag">Honey</span>
+                            <span class="ingredient-tag">Cheese</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Rakia</h3>
+                        <p class="cuisine-origin">Traditional Fruit Brandy</p>
+                        <p class="cuisine-description">A strong fruit brandy often made from plums, grapes, or other fruits. Central to hospitality and celebration in Balkan culture.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Plums</span>
+                            <span class="ingredient-tag">Grapes</span>
+                            <span class="ingredient-tag">Fermentation</span>
+                            <span class="ingredient-tag">Distillation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <div class="cuisine-info">
+                        <h3 class="cuisine-name">Ajvar</h3>
+                        <p class="cuisine-origin">Traditional Pepper Spread</p>
+                        <p class="cuisine-description">A roasted red pepper and eggplant spread that's a staple of Balkan cuisine. Often called "vegetarian caviar" for its rich flavor.</p>
+                        <div class="cuisine-ingredients">
+                            <span class="ingredient-tag">Red Peppers</span>
+                            <span class="ingredient-tag">Eggplant</span>
+                            <span class="ingredient-tag">Garlic</span>
+                            <span class="ingredient-tag">Oil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional Customs -->
+    <section class="traditions-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Living Traditions</h2>
+                <p class="section-description">Experience the customs and practices that continue to thrive today</p>
+            </div>
+            
+            <div class="traditions-grid">
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Besa - Sacred Promise</h3>
+                        <p>A fundamental concept in Albanian culture representing honor, trust, and keeping one's word. Besa extends beyond personal promises to include hospitality and protection of guests, even at great personal cost.</p>
+                    </div>
+                </div>
+                
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Traditional Hospitality</h3>
+                        <p>Guests are considered sacred in Balkan culture. The tradition of offering the best food, drink, and accommodation to visitors reflects deep-rooted values of generosity and respect.</p>
+                    </div>
+                </div>
+                
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Wedding Ceremonies</h3>
+                        <p>Multi-day celebrations featuring traditional music, dancing, and rituals that unite not just couples but entire communities. Each region has unique customs and ceremonial elements.</p>
+                    </div>
+                </div>
+                
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Seasonal Celebrations</h3>
+                        <p>Traditional festivals marking agricultural seasons, including Dita e Verës (Spring Day) and harvest celebrations that connect communities to natural cycles and agricultural heritage.</p>
+                    </div>
+                </div>
+                
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Religious Harmony</h3>
+                        <p>Despite diverse religious backgrounds, communities demonstrate remarkable tolerance and cooperation, often sharing celebrations and respecting each other's traditions.</p>
+                    </div>
+                </div>
+                
+                <div class="tradition-item">
+                    <div class="tradition-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="tradition-content">
+                        <h3>Community Gatherings</h3>
+                        <p>Regular community meetings and celebrations where decisions are made collectively and traditions are passed down through storytelling, music, and shared experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivals Calendar -->
+    <section class="festivals-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cultural Festivals & Events</h2>
+                <p class="section-description">Join authentic celebrations throughout the year</p>
+            </div>
+            
+            <div class="festivals-calendar">
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-date">March 14</div>
+                        <div class="festival-name">Dita e Verës</div>
+                        <div class="festival-location">Throughout Albania & Kosovo</div>
+                    </div>
+                    <div class="festival-content">
+                        <p class="festival-description">Summer Day celebration marking the end of winter and beginning of spring. Communities gather to celebrate renewal and the coming of warmer weather.</p>
+                        <div class="festival-activities">
+                            <h4>Traditional Activities:</h4>
+                            <ul class="activities-list">
+                                <li><i class="fas fa-leaf"></i>Nature walks and picnics</li>
+                                <li><i class="fas fa-music"></i>Folk music performances</li>
+                                <li><i class="fas fa-utensils"></i>Traditional food preparation</li>
+                                <li><i class="fas fa-child"></i>Children's games and activities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-date">July</div>
+                        <div class="festival-name">Dokufest</div>
+                        <div class="festival-location">Prizren, Kosovo</div>
+                    </div>
+                    <div class="festival-content">
+                        <p class="festival-description">International documentary and short film festival that transforms the historic city of Prizren into a cultural hub, attracting artists and visitors from around the world.</p>
+                        <div class="festival-activities">
+                            <h4>Festival Highlights:</h4>
+                            <ul class="activities-list">
+                                <li><i class="fas fa-film"></i>Documentary screenings</li>
+                                <li><i class="fas fa-camera"></i>Photography exhibitions</li>
+                                <li><i class="fas fa-microphone"></i>Music performances</li>
+                                <li><i class="fas fa-palette"></i>Art installations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-date">August</div>
+                        <div class="festival-name">Gjirokastër Folk Festival</div>
+                        <div class="festival-location">Gjirokastër, Albania</div>
+                    </div>
+                    <div class="festival-content">
+                        <p class="festival-description">Traditional Albanian folk festival held every five years in the UNESCO World Heritage city of Gjirokastër, celebrating authentic Albanian folk music and culture.</p>
+                        <div class="festival-activities">
+                            <h4>Cultural Events:</h4>
+                            <ul class="activities-list">
+                                <li><i class="fas fa-music"></i>Folk music competitions</li>
+                                <li><i class="fas fa-users"></i>Traditional dance groups</li>
+                                <li><i class="fas fa-tshirt"></i>Traditional costume displays</li>
+                                <li><i class="fas fa-store"></i>Artisan craft markets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-date">September</div>
+                        <div class="festival-name">Beer Fest</div>
+                        <div class="festival-location">Korçë, Albania</div>
+                    </div>
+                    <div class="festival-content">
+                        <p class="festival-description">Annual beer festival celebrating the brewing tradition of Korçë, featuring local and international beers alongside traditional Albanian music and food.</p>
+                        <div class="festival-activities">
+                            <h4>Festival Attractions:</h4>
+                            <ul class="activities-list">
+                                <li><i class="fas fa-beer"></i>Local brewery tastings</li>
+                                <li><i class="fas fa-music"></i>Live music performances</li>
+                                <li><i class="fas fa-utensils"></i>Traditional food vendors</li>
+                                <li><i class="fas fa-trophy"></i>Brewing competitions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="../assets/logo.svg" alt="Balkans Tourism" class="footer-logo">
+                        <h3>Balkans Tourism</h3>
+                    </div>
+                    <p>Your trusted partner for exploring the authentic beauty of Kosovo and Albania.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="accommodations.html">Hotels</a></li>
+                        <li><a href="culture.html">Culture</a></li>
+                        <li><a href="history.html">History</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="#">Travel Tips</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@balkanstourism.com</p>
+                        <p><i class="fas fa-phone"></i> +383 44 123 456</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pristina, Kosovo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Balkans Tourism Helpline. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Page-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCulturePage();
+        });
+
+        function initializeCulturePage() {
+            setupNavigation();
+            animateCounters();
+            setupScrollEffects();
+        }
+
+        function animateCounters() {
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.stat-number');
+                        counters.forEach(counter => {
+                            animateCounter(counter);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            const statsSection = document.querySelector('.cultural-stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const start = Date.now();
+            
+            function updateCounter() {
+                const elapsed = Date.now() - start;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(easeOutQuart * target);
+                
+                element.textContent = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            updateCounter();
+        }
+
+        function setupScrollEffects() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            const sections = document.querySelectorAll('.culture-categories, .cuisine-section, .traditions-showcase, .festivals-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function setupNavigation() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+                
+                navMenu.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('nav-link')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
